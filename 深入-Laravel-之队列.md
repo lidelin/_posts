@@ -4,7 +4,10 @@ date: 2018-06-22 23:42:13
 tags: Laravel
 ---
 
+# 前言
 Laravel 的队列为多种不同的队列后台提供了统一的 API，比如 Beanstalk， Amazon SQS，Redis，还有关系型数据库。接下来让我们通过这篇文章深入地了解一下 Laravel 的队列。
+
+<!--more-->
 
 # 基本用法
 ## 定义 QUEUE_DRIVER

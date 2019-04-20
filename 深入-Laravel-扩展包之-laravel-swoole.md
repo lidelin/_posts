@@ -10,6 +10,8 @@ tags:
 
 Swoole 让 Laravel 的性能提升了很多，但 Laravel 并非按 Swoole 的架构去设计的，将两者结合在一起使用需要做一些处理。这篇文章让我们一起来看看 laravel-swoole 这个包是怎么把 Laravel 和 Swoole 结合起来的。
 
+<!--more-->
+
 # Swoole 架构
 
 ## Swoole 架构

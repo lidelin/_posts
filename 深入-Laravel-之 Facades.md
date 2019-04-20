@@ -6,6 +6,8 @@ tags: Laravel
 
 Facade 一般中文翻译为 “门面”，是一种设计模式。
 
+<!--more-->
+
 # Facade 优点
 - 让 Api 变得简单清晰
     比如 \Illuminate\Cache\CacheManager::get，

@@ -8,6 +8,8 @@ tags: Laravel
 
 > “引导”：注册容器绑定，事件监听器，中间件，路由等。
 
+<!--more-->
+
 # 编写服务提供者
 ```bash
 php artisan make:provider RiakServiceProvider

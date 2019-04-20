@@ -13,6 +13,8 @@ tags:
 参考[这篇文章](http://www.docker.org.cn/book/docker/what-is-docker-16.html)的定义：Docker是一个开源的引擎，可以轻松的为任何应用创建一个轻量级的、可移植的、自给自足的容器。
 **简单粗暴来理解的话，可以把 Docker 理解成虚拟机，** 但实际上却有很大区别。
 
+<!--more-->
+
 Docker 和虚拟机的对比如下图：
 [![WechatIMG347.jpeg](https://i.loli.net/2018/08/11/5b6eb221c261b.jpeg)](https://i.loli.net/2018/08/11/5b6eb221c261b.jpeg)
 

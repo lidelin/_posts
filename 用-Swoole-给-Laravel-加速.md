@@ -6,10 +6,14 @@ tags:
     - laravel
 ---
 
+# 前言
+
 原文：https://laravel-news.com/laravel-swoole
 
 之前在 [Swoole 初探](https://lidelin.github.io/2018/08/26/Swoole-%E5%88%9D%E6%8E%A2/) 对 swoole 有了个初步认识，今天我们来看看 swoole 和 laravel 结合会给 laravel 带来什么样的变化。
 我们今天用的包是 [swooletw/laravel-swoole](https://github.com/swooletw/laravel-swoole)。
+
+<!--more-->
 
 # 为什么要让 Laravel 跑在 Swoole 上
 

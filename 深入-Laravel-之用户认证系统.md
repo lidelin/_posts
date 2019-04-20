@@ -8,6 +8,8 @@ Laravel 的用户认证系统是由“守卫”和“提供者”组成的。
 守卫定义了该如何认证每个请求的用户。例如，Laravel 的 session 守卫用 session 存储和 cookies 来维护状态。
 提供者定义了怎样从持久化的存储中检索用户。Laravel 支持从 Eloquent 和查询构造器检索用户。
 
+<!--more-->
+
 # 用户认证系统主要的 Interface
 
 主要的接口有以下几个：

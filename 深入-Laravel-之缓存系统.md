@@ -6,6 +6,8 @@ tags: Laravel
 
 Laravel 为各种后端缓存系统提供了丰富统一的 API，这节我们来看看 Laravel 的缓存系统。
 
+<!--more-->
+
 # 缓存系统的 interface
 
 缓存系统的主要接口有两个：

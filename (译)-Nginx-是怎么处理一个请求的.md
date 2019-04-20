@@ -4,7 +4,13 @@ date: 2018-07-15 22:01:45
 tags: nginx
 ---
 
+# 前言
+
+了解 Nginx 的整个处理流程，对我们日常使用 Nginx 是非常有帮助的。
+
 原文：[How nginx processes a request](http://nginx.org/en/docs/http/request_processing.html)
+
+<!--more-->
 
 # 基于服务器名的虚拟服务器
 
