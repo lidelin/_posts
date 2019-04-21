@@ -76,7 +76,77 @@ int clone(int (*fn)(void *), void *child_stack,
 
 ## 实践
 
-- PID Namespace
+### UTS Namespace
+
+UTS Namespace 可以让一个系统中的不同进程有不同的主机名，在网络上被视为一个独立的节点。
+
+```c
+#define _GNU_SOURCE
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <stdio.h>
+#include <sched.h>
+#include <signal.h>
+#include <unistd.h>
+
+#define STACK_SIZE (1024 * 1024)
+
+static char child_stack[STACK_SIZE];
+
+char *const child_args[] = {
+    "/bin/sh",
+    NULL};
+
+int child_main(void *arg)
+{
+    printf("Inside child process!\n");
+
+    sethostname("child", 6);
+
+    /* 直接执行一个shell，以便我们观察这个进程空间里的资源是否被隔离了 */
+    execv(child_args[0], child_args);
+
+    return 0;
+}
+
+int main()
+{
+    pid_t pid = getpid();
+    printf("Parent pid: [%d]\n", pid);
+
+    pid_t child_pid = clone(child_main,
+                            child_stack + sizeof(child_stack), /* Points to start of downwardly growing stack */
+                            CLONE_NEWUTS | SIGCHLD,
+                            NULL);
+
+    waitpid(child_pid, NULL, 0);
+
+    printf("Parent - child process stopped!\n");
+
+    return 0;
+}
+```
+
+运行结果
+
+```bash
+root@iZwz9a9kyixoqw1qrxhvpqZ:~# hostname
+iZwz9a9kyixoqw1qrxhvpqZ
+root@iZwz9a9kyixoqw1qrxhvpqZ:~# ./container
+Parent pid: [14532]
+Inside child process!
+# hostname
+child
+#
+```
+
+可以看到，在子进程启动的 shell 中，hostname 已经变成了 "child" 了
+
+### PID Namespace
+
+PID Namespace 会对进程 PID 重新标号，即两个不同 namespace 下的进程可以有同一个 PID。
+
+我们先来看看子进程和父进程在同一 namespace 的情况
 
 ```c
 #define _GNU_SOURCE
@@ -125,9 +195,10 @@ Child pid: [9435]
 Parent - child process stopped!
 ```
 
-可以看到父进程的 PID 是 9434，子进程的 PID 是 9435，说明父进程和子进程在同一个 namespace
+可以看到父进程的 PID 是 9434，子进程的 PID 是 9435
 
-我们小作修改，在调用 clone 的第三个参数加上 CLONE_NEWPID
+我们再看看子进程在一个新的 namespace 的情况。
+小作修改，在调用 clone 的第三个参数加上 CLONE_NEWPID
 
 ```c
 
@@ -151,8 +222,10 @@ Child pid: [1]
 Parent - child process stopped!
 ```
 
-可以看到父进程的 PID 是 3725，子进程的 PID 是 1，说明子进程在一个新的 PID namespace
+可以看到父进程的 PID 是 3725，子进程的 PID 是 1
 
+
+实践中演示了 UTS 和 PID Namespace，剩下的 IPC、Network、Mount、User Namespace 就不一一演示了。
 
 # 总结
 
